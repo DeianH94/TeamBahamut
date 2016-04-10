@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class ImageLoader {
-
     public static BufferedImage loadImage(String path) {
         try {
             return ImageIO.read(ImageLoader.class.getResource(path));
@@ -13,6 +12,7 @@ public class ImageLoader {
             e.printStackTrace();
             System.exit(1);
         }
+
         return null;
     }
 }

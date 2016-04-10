@@ -15,10 +15,10 @@ public class Assets {
     private static final int width = 32, height = 32;
 
     public static void init(){
-        SpriteSheet pinguin = new SpriteSheet(ImageLoader.loadImage("/resources/Penguin.png"));
-        background = ImageLoader.loadImage("/resources/Antarctica2.jpg");
+        SpriteSheet pinguin = new SpriteSheet(ImageLoader.loadImage("/textures/Penguin.png"));
+        background = ImageLoader.loadImage("/textures/Antarctica2.jpg");
         player = pinguin.crop(0, 0 ,32 , 32);
-        SpriteSheet fruit = new SpriteSheet(ImageLoader.loadImage("/resources/fruit-catcher-spritesheet.png"));
+        SpriteSheet fruit = new SpriteSheet(ImageLoader.loadImage("/textures/fruit-catcher-spritesheet.png"));
         food = fruit.crop(0, 0, 34 , 34);
         rock = fruit.crop(0 , 34 , 34 , 34);
     }

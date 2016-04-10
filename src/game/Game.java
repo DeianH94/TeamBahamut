@@ -10,16 +10,11 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
-/**
- * Created by Misho on 9.4.2016 г..
- */
-
 public class Game implements Runnable {
     private String name;
     public int width , height;
-    private boolean isRunning;
+    private boolean isRunning = false;
 
-    private boolean running = false;
     private Thread thread;
 
     private InputHandler inputHandler;
@@ -34,23 +29,20 @@ public class Game implements Runnable {
     private States menuState;
     private States settingsState;
 
-
     //Player
     public static Player player;
 
-
     private Display display;
-    public Game(String name , int width , int height) {
+    public Game(String name, int width, int height) {
         this.width = width;
         this.height = height;
         this.name = name;
-
     }
 
     public void init () {
         this.display = new Display(this.name , this.width , this.height);
-        img = ImageLoader.loadImage("/resources/iceberg--1.jpg");
-
+        img = ImageLoader.loadImage("/textures/Antarctica2.jpg");
+        sh = new SpriteSheet(ImageLoader.loadImage("/textures/Penguin.png"));
         this.inputHandler = new InputHandler(this.display);
         Assets.init();
 
@@ -58,9 +50,7 @@ public class Game implements Runnable {
         gameState = new GameState();
         menuState = new MenuState();
         settingsState = new SettingsState();
-
         StateManager.setState(gameState);
-
         player = new Player();
 
     }
@@ -69,21 +59,20 @@ public class Game implements Runnable {
         if (StateManager.getState() != null) {
             StateManager.getState().tick();
         }
+
         player.tick();
     }
 
     public void render () {
-
         this.bs = display.getCanvas().getBufferStrategy();
 
         if (bs == null) {
             display.getCanvas().createBufferStrategy(2);
             return;
         }
+
         g = bs.getDrawGraphics();
-
         g.clearRect(0, 0, this.width, this.height);
-
         g.drawImage(img, 0, 0, this.width, this.height, null);
         player.render(g);
 
@@ -93,7 +82,6 @@ public class Game implements Runnable {
         }
 
         bs.show();
-
         g.dispose();
     }
 
@@ -102,26 +90,17 @@ public class Game implements Runnable {
         init();
 
         int fps = 60;
-
         double timePerTick = 1_000_000_000.0 / fps;
-
         double delta = 0;
-
         long now;
-
         long lastTime = System.nanoTime();
-
         long timer = 0;
-
         int ticks = 0;
 
         while (isRunning) {
             now = System.nanoTime();
-
             delta += (now-lastTime) / timePerTick;
-
             timer += now - lastTime;
-
             lastTime = now;
 
             if (delta >= 1) {
@@ -137,6 +116,7 @@ public class Game implements Runnable {
                 timer = 0;
             }
         }
+
         stop();
     }
 
@@ -144,10 +124,11 @@ public class Game implements Runnable {
         if (this.isRunning) {
             return;
         }
+        isRunning = true;
         thread = new Thread(this);
         thread.start();
     }
-    public synchronized void stop ()  {
+    public synchronized void stop()  {
 
         if(!isRunning) {
             return;
