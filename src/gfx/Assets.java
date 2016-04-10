@@ -12,13 +12,13 @@ public class Assets {
     public static BufferedImage food;
     public static BufferedImage rock;
 
-    private static final int width = 32, height = 32;
+    private static final int width = 48, height = 48;
 
     public static void init(){
-        SpriteSheet pinguin = new SpriteSheet(ImageLoader.loadImage("/textures/Penguin.png"));
-        background = ImageLoader.loadImage("/textures/Antarctica2.jpg");
-        player = pinguin.crop(0, 0 ,32 , 32);
-        SpriteSheet fruit = new SpriteSheet(ImageLoader.loadImage("/textures/fruit-catcher-spritesheet.png"));
+        SpriteSheet pinguin = new SpriteSheet(ImageLoader.loadImage("/textures/Dog.png"));
+        background = ImageLoader.loadImage("/textures/forest.jpg");
+        player = pinguin.crop(48, 0, width, height);
+        SpriteSheet fruit = new SpriteSheet(ImageLoader.loadImage("/textures/food.png"));
         food = fruit.crop(0, 0, 34 , 34);
         rock = fruit.crop(0 , 34 , 34 , 34);
     }
