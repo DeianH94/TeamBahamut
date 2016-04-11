@@ -41,7 +41,7 @@ public class Game implements Runnable {
 
     public void init () {
         this.display = new Display(this.name , this.width , this.height);
-        img = ImageLoader.loadImage("/textures/forest.jpg");
+        img = ImageLoader.loadImage("/textures/Background.png");
         sh = new SpriteSheet(ImageLoader.loadImage("/textures/Dog.png"));
         this.inputHandler = new InputHandler(this.display);
         Assets.init();

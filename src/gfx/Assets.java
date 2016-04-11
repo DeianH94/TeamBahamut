@@ -16,7 +16,7 @@ public class Assets {
 
     public static void init(){
         SpriteSheet pinguin = new SpriteSheet(ImageLoader.loadImage("/textures/Dog.png"));
-        background = ImageLoader.loadImage("/textures/forest.jpg");
+        background = ImageLoader.loadImage("/textures/Background.png");
         player = new SpriteSheet(ImageLoader.loadImage("/textures/Dog.png"));
         SpriteSheet fruit = new SpriteSheet(ImageLoader.loadImage("/textures/food.png"));
         food = fruit.crop(0, 0, 34 , 34);
