@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.Timer;
 
@@ -29,10 +30,12 @@ public class Game implements Runnable {
     private int foodTime;
     private int rockTime;
     private int countFood;
+
     private Timer timer;
     private Timer foodTimer;
     private Timer rockTimer;
 
+    private ArrayList list;
     private BufferedImage img;
     private SpriteSheet sh;
 
@@ -83,6 +86,7 @@ public class Game implements Runnable {
         StateManager.setState(gameState);
         player = new Player();
         food = new Food(r.nextInt(700),r.nextInt(500),34,34);
+        list = new ArrayList<Rock>();
 
     }
     ActionListener speedListener = new ActionListener() {
@@ -101,7 +105,8 @@ public class Game implements Runnable {
     ActionListener rockListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // method to remove rocks when time finishes ?!?
+           list.add(rock);
+            list.remove(rock);
         }
     };
 
@@ -118,12 +123,16 @@ public class Game implements Runnable {
             if (countFood % 5 == 0){
                 rock = new Rock(r.nextInt(700),r.nextInt(500),34,34);
                 rockTimer.start();
+                rock.tick();
+
+
             }
         }
 
         player.tick();
         food.tick();
-        rock.tick();
+
+
 
 
 
@@ -155,7 +164,6 @@ public class Game implements Runnable {
         g.drawImage(img, 0, 0, this.width, this.height, null);
         player.render(g);
         food.render(g);
-        rock.render(g);
 
 
         if (StateManager.getState() != null){
