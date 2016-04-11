@@ -9,6 +9,8 @@ import states.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.Random;
+import java.util.Timer;
 
 public class Game implements Runnable {
     private String name;
@@ -20,6 +22,7 @@ public class Game implements Runnable {
     private InputHandler inputHandler;
     private BufferStrategy bs;
     private Graphics g;
+    private Random r;
 
     private BufferedImage img;
     private SpriteSheet sh;
@@ -31,6 +34,7 @@ public class Game implements Runnable {
 
     //Player
     public static Player player;
+    public static Food food;
 
     private Display display;
     public Game(String name, int width, int height) {
@@ -44,6 +48,7 @@ public class Game implements Runnable {
         img = ImageLoader.loadImage("/textures/Background.png");
         sh = new SpriteSheet(ImageLoader.loadImage("/textures/Dog.png"));
         this.inputHandler = new InputHandler(this.display);
+        r = new Random();
         Assets.init();
 
         //Initializing all the states
@@ -52,6 +57,9 @@ public class Game implements Runnable {
         settingsState = new SettingsState();
         StateManager.setState(gameState);
         player = new Player();
+        int randomX = r.nextInt(300);
+        int randomY = r.nextInt(300);
+        food = new Food(randomX,randomY,34,34);
 
     }
 
@@ -59,8 +67,13 @@ public class Game implements Runnable {
         if (StateManager.getState() != null) {
             StateManager.getState().tick();
         }
+        if (player.Intersects(this.food.boundingBox)){
+            player.speedDown();
 
+        }
         player.tick();
+        food.tick();
+
 
         Rectangle playerBoundingBox = player.getBoundingBox();
         if (playerBoundingBox.getX() > 745.0 || playerBoundingBox.getX() < 0.0){
@@ -86,6 +99,7 @@ public class Game implements Runnable {
         g.clearRect(0, 0, this.width, this.height);
         g.drawImage(img, 0, 0, this.width, this.height, null);
         player.render(g);
+        food.render(g);
 
 
         if (StateManager.getState() != null){

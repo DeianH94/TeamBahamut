@@ -83,4 +83,13 @@ public class Player {
                 this.y,
                 null);
     }
+
+    public boolean intersect(Rectangle boundingBox){
+        return this.boundingBox.contains(boundingBox) || boundingBox.contains(this.boundingBox);
+    }
+
+    public void speedDown(){
+        //some method to speed down game
+    }
+
 }
