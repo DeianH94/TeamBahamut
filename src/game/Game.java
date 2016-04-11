@@ -67,7 +67,7 @@ public class Game implements Runnable {
             System.out.println("you are death");
             stop();
         }
-        if (playerBoundingBox.getY() > 550 || playerBoundingBox.getY() < -10.0){
+        if (playerBoundingBox.getY() > 515 || playerBoundingBox.getY() < -10.0){
             System.out.println("You are death");
             stop();
         }
