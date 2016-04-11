@@ -7,10 +7,12 @@ import gfx.SpriteSheet;
 import states.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.Random;
-import java.util.Timer;
+import javax.swing.Timer;
 
 public class Game implements Runnable {
     private String name;
@@ -23,6 +25,13 @@ public class Game implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
     private Random r;
+    private int speedTime;
+    private int foodTime;
+    private int rockTime;
+    private int countFood;
+    private Timer timer;
+    private Timer foodTimer;
+    private Timer rockTimer;
 
     private BufferedImage img;
     private SpriteSheet sh;
@@ -35,6 +44,7 @@ public class Game implements Runnable {
     //Player
     public static Player player;
     public static Food food;
+    public static Rock rock;
 
     private Display display;
     public Game(String name, int width, int height) {
@@ -49,6 +59,21 @@ public class Game implements Runnable {
         sh = new SpriteSheet(ImageLoader.loadImage("/textures/Dog.png"));
         this.inputHandler = new InputHandler(this.display);
         r = new Random();
+        countFood = 1;
+
+        //timers for food, speedUp, rocks
+        speedTime = 3000;
+        foodTime = 5000;
+        rockTime = 5000;
+        timer = new Timer(speedTime, speedListener);
+        foodTimer = new Timer(foodTime, foodListener);
+        rockTimer = new Timer(rockTime,rockListener);
+        timer.start();
+        foodTimer.start();
+        rockTimer.start();
+        timer.setRepeats(true);
+        foodTimer.setRepeats(true);
+
         Assets.init();
 
         //Initializing all the states
@@ -57,22 +82,49 @@ public class Game implements Runnable {
         settingsState = new SettingsState();
         StateManager.setState(gameState);
         player = new Player();
-        int randomX = r.nextInt(300);
-        int randomY = r.nextInt(300);
-        food = new Food(randomX,randomY,34,34);
+        food = new Food(r.nextInt(700),r.nextInt(500),34,34);
 
     }
+    ActionListener speedListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            player.SpeedUp();
+        }
+    };
+    ActionListener foodListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            food = new Food(r.nextInt(700),r.nextInt(510),34,34);
+            countFood++;
+        }
+    };
+    ActionListener rockListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // method to remove rocks when time finishes ?!?
+        }
+    };
+
 
     public void tick () {
         if (StateManager.getState() != null) {
             StateManager.getState().tick();
         }
+
         if (player.Intersects(this.food.boundingBox)){
             player.speedDown();
-
+            food = new Food(r.nextInt(700),r.nextInt(510),34,34);
+            countFood++;
+            if (countFood % 5 == 0){
+                rock = new Rock(r.nextInt(700),r.nextInt(500),34,34);
+                rockTimer.start();
+            }
         }
+
         player.tick();
         food.tick();
+        rock.tick();
+
 
 
         Rectangle playerBoundingBox = player.getBoundingBox();
@@ -87,6 +139,9 @@ public class Game implements Runnable {
         System.out.println(playerBoundingBox.getY());
     }
 
+
+
+
     public void render () {
         this.bs = display.getCanvas().getBufferStrategy();
 
@@ -100,6 +155,7 @@ public class Game implements Runnable {
         g.drawImage(img, 0, 0, this.width, this.height, null);
         player.render(g);
         food.render(g);
+        rock.render(g);
 
 
         if (StateManager.getState() != null){

@@ -89,7 +89,10 @@ public class Player {
     }
 
     public void speedDown(){
-        //some method to speed down game
+       this.velocity-=2;
     }
+    public void SpeedUp(){
+        this.velocity += 1;
 
+    }
 }
