@@ -30,6 +30,10 @@ public class Player {
         this.boundingBox = new Rectangle(this.width, this.height);
     }
 
+    public Rectangle getBoundingBox() {
+        return this.boundingBox;
+    }
+
 
     //Checks if the player intersects with something
     // if rock ....             if food .....
