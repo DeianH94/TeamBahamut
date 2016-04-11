@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     public static BufferedImage background;
-    public static BufferedImage player;
+    public static SpriteSheet player;
     public static BufferedImage food;
     public static BufferedImage rock;
 
@@ -17,7 +17,7 @@ public class Assets {
     public static void init(){
         SpriteSheet pinguin = new SpriteSheet(ImageLoader.loadImage("/textures/Dog.png"));
         background = ImageLoader.loadImage("/textures/forest.jpg");
-        player = pinguin.crop(48, 0, width, height);
+        player = new SpriteSheet(ImageLoader.loadImage("/textures/Dog.png"));
         SpriteSheet fruit = new SpriteSheet(ImageLoader.loadImage("/textures/food.png"));
         food = fruit.crop(0, 0, 34 , 34);
         rock = fruit.crop(0 , 34 , 34 , 34);
