@@ -37,10 +37,11 @@ public class Player {
 
     //Checks if the player intersects with something
     // if rock ....             if food .....
-    public boolean Intersects(Rectangle r) {
+    public boolean intersects(Rectangle r) {
         if(this.boundingBox.contains(r) || r.contains(this.boundingBox)) {
             return true;
         }
+
         return false;
     }
 
@@ -52,27 +53,25 @@ public class Player {
         if(goingUp) {
             this.y -= this.velocity;
             this.row =3;
-            this.col++;
-            this.col %= 3;
         }
+
         if(goingDown) {
             this.y += this.velocity;
             this.row = 0;
-            this.col++;
-            this.col %= 3;
         }
+
         if(goingLeft) {
             this.x -= this.velocity;
             this.row = 1;
-            this.col++;
-            this.col %= 3;
         }
+
         if(goingRight) {
             this.x += this.velocity;
             this.row = 2;
-            this.col++;
-            this.col %= 3;
         }
+
+        this.col++;
+        this.col %= 3;
     }
 
     //Draws the player
@@ -82,17 +81,14 @@ public class Player {
                 this.x,
                 this.y,
                 null);
-    }
-
-    public boolean intersect(Rectangle boundingBox){
-        return this.boundingBox.contains(boundingBox) || boundingBox.contains(this.boundingBox);
+        g.drawRect(this.x, this.y, this.width, this.height);
     }
 
     public void speedDown(){
        this.velocity-=2;
     }
+
     public void SpeedUp(){
         this.velocity += 1;
-
     }
 }

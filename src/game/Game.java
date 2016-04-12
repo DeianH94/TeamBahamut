@@ -70,7 +70,7 @@ public class Game implements Runnable {
         rockTime = 5000;
         timer = new Timer(speedTime, speedListener);
         foodTimer = new Timer(foodTime, foodListener);
-        rockTimer = new Timer(rockTime,rockListener);
+        rockTimer = new Timer(rockTime, rockListener);
         timer.start();
         foodTimer.start();
         rockTimer.start();
@@ -85,7 +85,7 @@ public class Game implements Runnable {
         settingsState = new SettingsState();
         StateManager.setState(gameState);
         player = new Player();
-        food = new Food(r.nextInt(700),r.nextInt(500),34,34);
+        food = new Food(r.nextInt(700), r.nextInt(500), 34, 34);
         list = new ArrayList<Rock>();
 
     }
@@ -98,7 +98,7 @@ public class Game implements Runnable {
     ActionListener foodListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            food = new Food(r.nextInt(700),r.nextInt(510),34,34);
+            food = new Food(r.nextInt(700), r.nextInt(510), 34, 34);
             countFood++;
         }
     };
@@ -116,35 +116,31 @@ public class Game implements Runnable {
             StateManager.getState().tick();
         }
 
-        if (player.Intersects(this.food.boundingBox)){
+        if (player.intersects(this.food.boundingBox)){
             player.speedDown();
-            food = new Food(r.nextInt(700),r.nextInt(510),34,34);
+            food = new Food(r.nextInt(700), r.nextInt(510), 34, 34);
             countFood++;
             if (countFood % 5 == 0){
-                rock = new Rock(r.nextInt(700),r.nextInt(500),34,34);
+                rock = new Rock(r.nextInt(700), r.nextInt(500), 34, 34);
                 rockTimer.start();
                 rock.tick();
-
-
             }
         }
 
         player.tick();
         food.tick();
 
-
-
-
-
         Rectangle playerBoundingBox = player.getBoundingBox();
         if (playerBoundingBox.getX() > 745.0 || playerBoundingBox.getX() < 0.0){
             System.out.println("you are death");
             stop();
         }
+
         if (playerBoundingBox.getY() > 515 || playerBoundingBox.getY() < -10.0){
             System.out.println("You are death");
             stop();
         }
+
         System.out.println(playerBoundingBox.getY());
     }
 
@@ -165,6 +161,9 @@ public class Game implements Runnable {
         player.render(g);
         food.render(g);
 
+        if (rock != null) {
+            rock.render(g);
+        }
 
         if (StateManager.getState() != null){
             StateManager.getState().render(this.g);
@@ -213,15 +212,18 @@ public class Game implements Runnable {
         if (this.isRunning) {
             return;
         }
+
         isRunning = true;
         thread = new Thread(this);
         thread.start();
     }
+
     public synchronized void stop()  {
 
         if(!isRunning) {
             return;
         }
+
         isRunning = false;
 
         try {
