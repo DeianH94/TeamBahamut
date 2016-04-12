@@ -85,10 +85,14 @@ public class Player {
     }
 
     public void speedDown(){
-       this.velocity-=2;
+       this.velocity -= 2;
     }
 
-    public void SpeedUp(){
+    public void speedUp(){
         this.velocity += 1;
+    }
+
+    public void speedUpMore() {
+        this.velocity += 5;
     }
 }

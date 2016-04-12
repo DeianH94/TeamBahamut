@@ -92,7 +92,7 @@ public class Game implements Runnable {
     ActionListener speedListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            player.SpeedUp();
+            player.speedUp();
         }
     };
     ActionListener foodListener = new ActionListener() {
@@ -105,7 +105,7 @@ public class Game implements Runnable {
     ActionListener rockListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-           list.add(rock);
+            list.add(rock);
             list.remove(rock);
         }
     };
@@ -127,6 +127,11 @@ public class Game implements Runnable {
             }
         }
 
+        if (this.rock != null && player.intersects(this.rock.boundingBox)) {
+            player.speedUpMore();
+            rock = null;
+        }
+
         player.tick();
         food.tick();
 
@@ -144,9 +149,6 @@ public class Game implements Runnable {
         System.out.println(playerBoundingBox.getY());
     }
 
-
-
-
     public void render () {
         this.bs = display.getCanvas().getBufferStrategy();
 
@@ -161,7 +163,7 @@ public class Game implements Runnable {
         player.render(g);
         food.render(g);
 
-        if (rock != null) {
+        if (this.rock != null) {
             rock.render(g);
         }
 
