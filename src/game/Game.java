@@ -85,7 +85,7 @@ public class Game implements Runnable {
         settingsState = new SettingsState();
         StateManager.setState(gameState);
         player = new Player();
-        food = new Food(r.nextInt(700), r.nextInt(500), 34, 34);
+        food = new Food(r.nextInt(700), r.nextInt(500));
         list = new ArrayList<Rock>();
 
     }
@@ -98,7 +98,7 @@ public class Game implements Runnable {
     ActionListener foodListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            food = new Food(r.nextInt(700), r.nextInt(510), 34, 34);
+            food = new Food(r.nextInt(700), r.nextInt(510));
             countFood++;
         }
     };
@@ -118,7 +118,7 @@ public class Game implements Runnable {
 
         if (player.intersects(this.food.boundingBox)){
             player.speedDown();
-            food = new Food(r.nextInt(700), r.nextInt(510), 34, 34);
+            food = new Food(r.nextInt(700), r.nextInt(510));
             countFood++;
             if (countFood % 5 == 0){
                 rock = new Rock(r.nextInt(700), r.nextInt(500), 34, 34);
