@@ -1,6 +1,9 @@
 package game;
 
 import display.Display;
+import entities.creatures.Player;
+import entities.items.Food;
+import entities.items.Rock;
 import gfx.Assets;
 import gfx.ImageLoader;
 import gfx.SpriteSheet;
@@ -65,7 +68,7 @@ public class Game implements Runnable {
         r = new Random();
         countFood = 1;
 
-        //timers for food, speedUp, rocks
+        // Timers for food, speedUp, rocks
         speedTime = 3000;
         foodTime = 5000;
         rockTime = 5000;
@@ -80,12 +83,14 @@ public class Game implements Runnable {
 
         Assets.init();
 
-        //Initializing all the states
+        // Initializing all the states
         gameState = new GameState();
         menuState = new MenuState();
         settingsState = new SettingsState();
         StateManager.setState(gameState);
-        player = new Player();
+
+        // Entities
+        player = new Player(200, 300);
         food = new Food(r.nextInt(700), r.nextInt(500));
         list = new ArrayList<Rock>();
 

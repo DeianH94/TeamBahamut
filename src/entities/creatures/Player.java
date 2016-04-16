@@ -1,12 +1,13 @@
-package game;
+package entities.creatures;
 
+import entities.Entity;
 import gfx.Assets;
 import gfx.SpriteSheet;
 
 import java.awt.*;
 
-public class Player {
-    private int x, y;
+public class Player extends Entity {
+
     private int velocity;
     private int width, height;
 
@@ -20,9 +21,8 @@ public class Player {
     public static boolean goingLeft;
     public static boolean goingRight;
 
-    public Player() {
-        this.x = 200;
-        this.y = 300;
+    public Player(int x, int y) {
+        super(x, y);
         this.width = 48;
         this.height = 48;
         this.velocity = 5;

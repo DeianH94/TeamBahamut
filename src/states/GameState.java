@@ -1,8 +1,5 @@
 package states;
 
-
-import gfx.Assets;
-
 import java.awt.*;
 
 public class GameState extends States{

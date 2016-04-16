@@ -1,20 +1,20 @@
-package game;
+package entities.items;
 
+import entities.Entity;
 import gfx.Assets;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Rock {
+public class Rock extends Entity {
 
-    private int x, y, width, height;
+    private int width, height;
     public Rectangle boundingBox;
     private BufferedImage image;
 
 
     public Rock(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.width = width;
         this.height = height;
         this.boundingBox = new Rectangle(x, y, width, height);
