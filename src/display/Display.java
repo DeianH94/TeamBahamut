@@ -3,14 +3,23 @@ package display;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by Misho on 9.4.2016 г..
- */
 public class Display {
+    private String name;
+    private int width;
+    private int height;
+
     private JFrame frame;
     private Canvas canvas;
 
     public Display (String name , int width , int height ) {
+        this.name = name;
+        this.width = width;
+        this.height = height;
+
+        createDisplay();
+    }
+
+    private void createDisplay() {
         this.frame = new JFrame(name);
         this.frame.setPreferredSize(new Dimension(width, height));
         this.frame.setMinimumSize(new Dimension(width, height));
@@ -27,12 +36,11 @@ public class Display {
         this.canvas.setMaximumSize(new Dimension(width, height));
         this.canvas.setFocusable(true);
 
-
         this.frame.add(this.canvas);
         this.frame.pack();
     }
 
-        public Canvas getCanvas() {
+    public Canvas getCanvas() {
         return canvas;
     }
 }

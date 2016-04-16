@@ -50,6 +50,7 @@ public class Game implements Runnable {
     public static Rock rock;
 
     private Display display;
+
     public Game(String name, int width, int height) {
         this.width = width;
         this.height = height;
@@ -221,7 +222,6 @@ public class Game implements Runnable {
     }
 
     public synchronized void stop()  {
-
         if(!isRunning) {
             return;
         }

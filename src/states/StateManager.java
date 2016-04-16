@@ -1,6 +1,5 @@
 package states;
 
-
 public class StateManager {
     //It will hold what state we currently want to tick() and render()
     private static States currentState = null;
