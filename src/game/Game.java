@@ -84,9 +84,9 @@ public class Game implements Runnable {
         Assets.init();
 
         // Initializing all the states
-        gameState = new GameState();
-        menuState = new MenuState();
-        settingsState = new SettingsState();
+        gameState = new GameState(this);
+        menuState = new MenuState(this);
+        settingsState = new SettingsState(this);
         StateManager.setState(gameState);
 
         // Entities

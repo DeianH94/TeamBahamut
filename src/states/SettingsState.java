@@ -1,9 +1,12 @@
 package states;
+import game.Game;
+
 import java.awt.*;
 
 public class SettingsState extends States {
 
-    public SettingsState() {
+    public SettingsState(Game game) {
+        super(game);
 
     }
 
