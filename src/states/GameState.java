@@ -24,6 +24,7 @@ public class GameState extends States{
     private int foodTime;
     private int rockTime;
     private int countFood;
+    private int score;
 
     private Timer timer;
     private Timer foodTimer;
@@ -90,6 +91,7 @@ public class GameState extends States{
             player.speedDown();
             food = new Food(r.nextInt(700), r.nextInt(510));
             countFood++;
+            score++;
             if (countFood % 5 == 0){
                 rock = new Rock(r.nextInt(700), r.nextInt(500), 34, 34);
                 rockTimer.start();
@@ -109,6 +111,10 @@ public class GameState extends States{
     @Override
     public void render(Graphics g) {
         g.drawImage(img, 0, 0, game.getWidth(), game.getHeight(), null);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        g.drawString("Score:    " + score,10,20);
+        g.drawString(String.format("%s: %d","Strenght",player.getVelocity()),10,40);
+
         player.render(g);
         food.render(g);
 

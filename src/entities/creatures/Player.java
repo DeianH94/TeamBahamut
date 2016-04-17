@@ -30,6 +30,10 @@ public class Player extends Entity {
         this.boundingBox = new Rectangle(this.width, this.height);
     }
 
+    public int getVelocity() {
+        return velocity-1;
+    }
+
     public Rectangle getBoundingBox() {
         return this.boundingBox;
     }
@@ -95,6 +99,7 @@ public class Player extends Entity {
     public void speedUpMore() { this.velocity -= 3; }
 
     public boolean isAlive(){
-        return this.velocity > 0;
+        return this.velocity >= 1;
     }
+
 }
