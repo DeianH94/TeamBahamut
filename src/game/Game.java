@@ -15,7 +15,7 @@ public class Game implements Runnable {
     private Thread thread;
 
     private InputHandler inputHandler;
-    public MouseHandler mouseHandler;
+    private MouseHandler mouseHandler;
     private BufferStrategy bs;
     private Graphics g;
 
@@ -31,13 +31,17 @@ public class Game implements Runnable {
         this.height = height;
         this.name = name;
     }
-    
+
     public int getWidth() {
-        return width;
+        return this.width;
     }
 
     public int getHeight() {
-        return height;
+        return this.height;
+    }
+
+    public MouseHandler getMouseHandler() {
+        return mouseHandler;
     }
 
     private void init() {

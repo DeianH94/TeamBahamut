@@ -24,12 +24,12 @@ public class MenuState extends States{
 
     @Override
     public void tick() {
-        if (game.mouseHandler.getMouseX() >= 260
-                && game.mouseHandler.getMouseX() < 260 + buttonWidth
-                && game.mouseHandler.getMouseY() > 260
-                && game.mouseHandler.getMouseY() < 260 + buttonHeight) {
+        if (game.getMouseHandler().getMouseX() >= 260
+                && game.getMouseHandler().getMouseX() < 260 + buttonWidth
+                && game.getMouseHandler().getMouseY() > 260
+                && game.getMouseHandler().getMouseY() < 260 + buttonHeight) {
             startRow = 1;
-            if (game.mouseHandler.isLeftPressed())
+            if (game.getMouseHandler().isLeftPressed())
             {
                 StateManager.setState(game.gameState);
             }
@@ -37,12 +37,12 @@ public class MenuState extends States{
             startRow = 0;
         }
 
-        if (game.mouseHandler.getMouseX() >= 260
-                && game.mouseHandler.getMouseX() < 260 + buttonWidth
-                && game.mouseHandler.getMouseY() > 360
-                && game.mouseHandler.getMouseY() < 360 + buttonHeight) {
+        if (game.getMouseHandler().getMouseX() >= 260
+                && game.getMouseHandler().getMouseX() < 260 + buttonWidth
+                && game.getMouseHandler().getMouseY() > 360
+                && game.getMouseHandler().getMouseY() < 360 + buttonHeight) {
             exitRow = 1;
-            if (game.mouseHandler.isLeftPressed())
+            if (game.getMouseHandler().isLeftPressed())
             {
                 System.exit(0);
             }
