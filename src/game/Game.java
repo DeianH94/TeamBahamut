@@ -141,6 +141,11 @@ public class Game implements Runnable {
         player.tick();
         food.tick();
 
+        if (! player.isAlive()){
+            System.out.println("You are death");
+            stop();
+        }
+
         Rectangle playerBoundingBox = player.getBoundingBox();
         if (playerBoundingBox.getX() > 745.0 || playerBoundingBox.getX() < 0.0){
             System.out.println("you are death");

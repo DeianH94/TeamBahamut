@@ -85,14 +85,16 @@ public class Player extends Entity {
     }
 
     public void speedDown(){
-       this.velocity -= 2;
+       this.velocity += 2;
     }
 
     public void speedUp(){
-        this.velocity += 1;
+        this.velocity -= 0.3;
     }
 
-    public void speedUpMore() {
-        this.velocity += 5;
+    public void speedUpMore() { this.velocity -= 3; }
+
+    public boolean isAlive(){
+        return this.velocity > 0;
     }
 }
