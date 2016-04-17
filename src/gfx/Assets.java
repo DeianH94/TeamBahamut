@@ -1,15 +1,13 @@
 package gfx;
 
 import java.awt.image.BufferedImage;
-import java.io.InputStream;
-
-import static com.sun.org.apache.bcel.internal.util.SecuritySupport.getResourceAsStream;
 
 public class Assets {
 
     public static BufferedImage background;
     public static SpriteSheet player;
     public static SpriteSheet fruit;
+    public static SpriteSheet button;
     public static BufferedImage rock;
 
 
@@ -20,7 +18,7 @@ public class Assets {
         player = new SpriteSheet(ImageLoader.loadImage("/textures/Dog.png"));
         fruit = new SpriteSheet(ImageLoader.loadImage("/textures/food.png"));
         SpriteSheet skull = new SpriteSheet(ImageLoader.loadImage("/textures/skull.png"));
-
+        button = new SpriteSheet(ImageLoader.loadImage("/textures/button.png"));
         rock = skull.crop(0, 0, skullWidth, skullHeight);
     }
 }
