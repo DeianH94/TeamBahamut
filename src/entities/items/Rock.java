@@ -27,7 +27,7 @@ public class Rock extends Entity {
 
     public void render(Graphics g){
         g.drawImage(this.image,this.x, this.y, this.width, this.height, null);
-        g.drawRect(this.x, this.y, this.width, this.height);
+        //g.drawRect(this.x, this.y, this.width, this.height);
     }
 }
 
