@@ -16,8 +16,8 @@ import java.util.Random;
 
 public class GameState extends States{
     public static Player player;
-    public static Food food;
-    public static Rock rock;
+    private static Food food;
+    private static Rock rock;
 
     private Random r;
     private int speedTime;
@@ -47,31 +47,33 @@ public class GameState extends States{
         timer.setRepeats(true);
         foodTimer.setRepeats(true);
         // Entities
-        GameState.player = new Player(200, 300);
-        GameState.food = new Food(r.nextInt(700), r.nextInt(500));
+        player = new Player(200, 300);
+        food = new Food(r.nextInt(700), r.nextInt(500));
         list = new ArrayList<Rock>();
         img = ImageLoader.loadImage("/textures/Background.png");
     }
 
 
-    ActionListener speedListener = new ActionListener() {
+    private ActionListener speedListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             GameState.player.speedUp();
         }
     };
-    ActionListener foodListener = new ActionListener() {
+
+    private ActionListener foodListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            GameState.food = new Food(r.nextInt(700), r.nextInt(510));
+            food = new Food(r.nextInt(700), r.nextInt(510));
             countFood++;
         }
     };
-    ActionListener rockListener = new ActionListener() {
+
+    private ActionListener rockListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            list.add(GameState.rock);
-            list.remove(GameState.rock);
+            list.add(rock);
+            list.remove(rock);
         }
     };
 
@@ -84,34 +86,34 @@ public class GameState extends States{
             rockTimer.start();
         }
 
-        if (GameState.player.intersects(GameState.food.boundingBox)){
-            GameState.player.speedDown();
-            GameState.food = new Food(r.nextInt(700), r.nextInt(510));
+        if (player.intersects(food.boundingBox)){
+            player.speedDown();
+            food = new Food(r.nextInt(700), r.nextInt(510));
             countFood++;
             if (countFood % 5 == 0){
-                GameState.rock = new Rock(r.nextInt(700), r.nextInt(500), 34, 34);
+                rock = new Rock(r.nextInt(700), r.nextInt(500), 34, 34);
                 rockTimer.start();
-                GameState.rock.tick();
+                rock.tick();
             }
         }
 
-        if (GameState.rock != null && GameState.player.intersects(GameState.rock.boundingBox)) {
-            GameState.player.speedUpMore();
-            GameState.rock = null;
+        if (rock != null && player.intersects(rock.boundingBox)) {
+            player.speedUpMore();
+            rock = null;
         }
 
-        GameState.player.tick();
-        GameState.food.tick();
+        player.tick();
+        food.tick();
     }
 
     @Override
     public void render(Graphics g) {
         g.drawImage(img, 0, 0, game.width, game.height, null);
-        GameState.player.render(g);
-        GameState.food.render(g);
+        player.render(g);
+        food.render(g);
 
-        if (GameState.rock != null) {
-            GameState.rock.render(g);
+        if (rock != null) {
+            rock.render(g);
         }
     }
 }

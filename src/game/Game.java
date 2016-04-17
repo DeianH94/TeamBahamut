@@ -36,7 +36,7 @@ public class Game implements Runnable {
         this.name = name;
     }
 
-    public void init () {
+    private void init() {
         this.display = new Display(this.name , this.width , this.height);
 
         sh = new SpriteSheet(ImageLoader.loadImage("/textures/Dog.png"));
