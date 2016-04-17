@@ -65,12 +65,12 @@ public class Game implements Runnable {
             StateManager.getState().tick();
         }
 
-        if (!GameState.player.isAlive()){
+        /*if (!GameState.player.isAlive()){
 
         }
 
-        Rectangle playerBoundingBox = GameState.player.getBoundingBox();
-        if (playerBoundingBox.getX() > 745.0 || playerBoundingBox.getX() < 0.0){
+
+        /*if (playerBoundingBox.getX() > 745.0 || playerBoundingBox.getX() < 0.0){
             System.out.println("you are death");
             stop();
 
@@ -79,9 +79,9 @@ public class Game implements Runnable {
         if (playerBoundingBox.getY() > 515 || playerBoundingBox.getY() < -10.0){
             System.out.println("You are death");
             stop();
-        }
+        }*/
 
-        System.out.println(playerBoundingBox.getY());
+       // System.out.println(playerBoundingBox.getY());
     }
 
     public void render () {

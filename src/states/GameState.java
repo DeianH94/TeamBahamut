@@ -112,6 +112,10 @@ public class GameState extends States{
     public void render(Graphics g) {
         g.drawImage(img, 0, 0, game.getWidth(), game.getHeight(), null);
 
+        player.render(g);
+        food.render(g);
+
+
         if (player.isAlive()) {
             g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
             g.drawString("Score:    " + score, 10, 20);
@@ -123,10 +127,9 @@ public class GameState extends States{
             g.setFont(new Font("TimesRoman", Font.BOLD, 20));
             g.setColor(Color.RED);
             g.drawString("Your Score is:    " + score,335,300);
+            player.setVelocity(0);
         }
 
-        player.render(g);
-        food.render(g);
 
         if (rock != null) {
             rock.render(g);

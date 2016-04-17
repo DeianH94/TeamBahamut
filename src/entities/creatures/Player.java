@@ -6,6 +6,8 @@ import gfx.SpriteSheet;
 
 import java.awt.*;
 
+import static states.GameState.player;
+
 public class Player extends Entity {
 
     private int velocity;
@@ -32,6 +34,10 @@ public class Player extends Entity {
 
     public int getVelocity() {
         return velocity;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
     }
 
     public Rectangle getBoundingBox() {
@@ -99,7 +105,12 @@ public class Player extends Entity {
     public void speedUpMore() { this.velocity = 3; }
 
     public boolean isAlive(){
-        return this.velocity >= 1;
+        Rectangle playerBoundingBox = player.getBoundingBox();
+        return this.velocity >= 1
+                && playerBoundingBox.getX() < 745.0
+                && playerBoundingBox.getX() >= 0.0
+                && playerBoundingBox.getY() < 515
+                && playerBoundingBox.getY() > -10.0;
     }
 
 }
