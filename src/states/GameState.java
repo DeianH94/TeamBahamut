@@ -111,9 +111,19 @@ public class GameState extends States{
     @Override
     public void render(Graphics g) {
         g.drawImage(img, 0, 0, game.getWidth(), game.getHeight(), null);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-        g.drawString("Score:    " + score,10,20);
-        g.drawString(String.format("%s: %d","Strenght",player.getVelocity()),10,40);
+
+        if (player.isAlive()) {
+            g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+            g.drawString("Score:    " + score, 10, 20);
+            g.drawString(String.format("%s: %d", "Strenght", player.getVelocity()), 10, 40);
+
+        } else{
+            g.setFont(new Font("TimesRoman", Font.BOLD, 80));
+            g.drawString("Game Over",175,250);
+            g.setFont(new Font("TimesRoman", Font.BOLD, 20));
+            g.setColor(Color.RED);
+            g.drawString("Your Score is:    " + score,335,300);
+        }
 
         player.render(g);
         food.render(g);

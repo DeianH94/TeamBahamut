@@ -55,7 +55,8 @@ public class MenuState extends States{
     public void render(Graphics g) {
         g.drawImage(img, 0, 0, game.getWidth(), game.getHeight(), null);
         g.drawImage(this.button.crop(0, buttonHeight * startRow, buttonWidth, buttonHeight), 260, 260, null);
-        g.drawString("Start new game", 345, 305);
+        g.setFont(new Font("TimesRoman", Font.BOLD, 20));
+        g.drawString("Start new game", 315, 305);
         g.drawImage(this.button.crop(0, buttonHeight * exitRow, buttonWidth, buttonHeight), 260, 360, null);
         g.drawString("Exit", 375, 405);
     }

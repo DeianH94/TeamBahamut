@@ -1,6 +1,7 @@
 package game;
 
 import display.Display;
+import entities.creatures.Player;
 import gfx.Assets;
 import states.*;
 
@@ -65,7 +66,7 @@ public class Game implements Runnable {
         }
 
         if (!GameState.player.isAlive()){
-           stop();
+
         }
 
         Rectangle playerBoundingBox = GameState.player.getBoundingBox();
