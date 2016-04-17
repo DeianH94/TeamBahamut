@@ -53,7 +53,7 @@ public class MenuState extends States{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(img, 0, 0, game.width, game.height, null);
+        g.drawImage(img, 0, 0, game.getWidth(), game.getHeight(), null);
         g.drawImage(this.button.crop(0, buttonHeight * startRow, buttonWidth, buttonHeight), 260, 260, null);
         g.drawString("Start new game", 345, 305);
         g.drawImage(this.button.crop(0, buttonHeight * exitRow, buttonWidth, buttonHeight), 260, 360, null);

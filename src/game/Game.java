@@ -2,8 +2,6 @@ package game;
 
 import display.Display;
 import gfx.Assets;
-import gfx.ImageLoader;
-import gfx.SpriteSheet;
 import states.*;
 
 import java.awt.*;
@@ -11,7 +9,7 @@ import java.awt.image.BufferStrategy;
 
 public class Game implements Runnable {
     private String name;
-    public int width , height;
+    private int width , height;
     private boolean isRunning = false;
 
     private Thread thread;
@@ -20,8 +18,6 @@ public class Game implements Runnable {
     public MouseHandler mouseHandler;
     private BufferStrategy bs;
     private Graphics g;
-
-    private SpriteSheet sh;
 
     //States
     public States gameState;
@@ -36,10 +32,26 @@ public class Game implements Runnable {
         this.name = name;
     }
 
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
     private void init() {
         this.display = new Display(this.name , this.width , this.height);
 
-        sh = new SpriteSheet(ImageLoader.loadImage("/textures/Dog.png"));
         this.inputHandler = new InputHandler(this.display);
         this.mouseHandler = new MouseHandler(this.display);
 
@@ -52,14 +64,12 @@ public class Game implements Runnable {
         StateManager.setState(menuState);
     }
 
-
-
     public void tick () {
         if (StateManager.getState() != null) {
             StateManager.getState().tick();
         }
 
-        if (! GameState.player.isAlive()){
+        if (!GameState.player.isAlive()){
             System.out.println("You are death");
             stop();
         }

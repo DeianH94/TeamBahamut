@@ -108,7 +108,7 @@ public class GameState extends States{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(img, 0, 0, game.width, game.height, null);
+        g.drawImage(img, 0, 0, game.getWidth(), game.getHeight(), null);
         player.render(g);
         food.render(g);
 
