@@ -26,6 +26,7 @@ public class Game implements Runnable {
     private Thread thread;
 
     private InputHandler inputHandler;
+    private MouseHandler mouseHandler;
     private BufferStrategy bs;
     private Graphics g;
     private Random r;
@@ -65,6 +66,7 @@ public class Game implements Runnable {
         img = ImageLoader.loadImage("/textures/Background.png");
         sh = new SpriteSheet(ImageLoader.loadImage("/textures/Dog.png"));
         this.inputHandler = new InputHandler(this.display);
+        this.mouseHandler = new MouseHandler(this.display);
         r = new Random();
         countFood = 1;
 
