@@ -5,6 +5,7 @@ import entities.items.Food;
 import entities.items.Rock;
 import game.Game;
 import gfx.ImageLoader;
+import javafx.application.Application;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,12 +24,14 @@ public class GameState extends States{
     private int speedTime;
     private int foodTime;
     private int rockTime;
+    private int gameTime;
     private int countFood;
     private int score;
 
     private Timer timer;
     private Timer foodTimer;
     private Timer rockTimer;
+    private Timer gameTimer;
 
     private ArrayList list;
     private BufferedImage img;
@@ -42,9 +45,11 @@ public class GameState extends States{
         speedTime = 3000;
         foodTime = 5000;
         rockTime = 5000;
+        gameTime = 5000;
         timer = new Timer(speedTime, speedListener);
         foodTimer = new Timer(foodTime, foodListener);
         rockTimer = new Timer(rockTime, rockListener);
+        gameTimer = new Timer(gameTime,gameListener);
         timer.setRepeats(true);
         foodTimer.setRepeats(true);
         // Entities
@@ -53,7 +58,12 @@ public class GameState extends States{
         list = new ArrayList<Rock>();
         img = ImageLoader.loadImage("/textures/Background.png");
     }
-
+    private ActionListener gameListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.exit(10);
+        }
+    };
 
     private ActionListener speedListener = new ActionListener() {
         @Override
@@ -128,6 +138,8 @@ public class GameState extends States{
             g.setColor(Color.RED);
             g.drawString("Your Score is:    " + score,335,300);
             player.setVelocity(0);
+            gameTimer.start();
+
         }
 
 
