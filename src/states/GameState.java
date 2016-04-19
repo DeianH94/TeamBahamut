@@ -5,7 +5,6 @@ import entities.items.Food;
 import entities.items.Rock;
 import game.Game;
 import gfx.ImageLoader;
-import javafx.application.Application;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,14 +23,12 @@ public class GameState extends States{
     private int speedTime;
     private int foodTime;
     private int rockTime;
-    private int gameTime;
     private int countFood;
-    private int score;
+    public int score;
 
     private Timer timer;
     private Timer foodTimer;
     private Timer rockTimer;
-    private Timer gameTimer;
 
     private ArrayList list;
     private BufferedImage img;
@@ -45,11 +42,9 @@ public class GameState extends States{
         speedTime = 3000;
         foodTime = 5000;
         rockTime = 5000;
-        gameTime = 5000;
         timer = new Timer(speedTime, speedListener);
         foodTimer = new Timer(foodTime, foodListener);
         rockTimer = new Timer(rockTime, rockListener);
-        gameTimer = new Timer(gameTime,gameListener);
         timer.setRepeats(true);
         foodTimer.setRepeats(true);
         // Entities
@@ -57,13 +52,12 @@ public class GameState extends States{
         food = new Food(r.nextInt(700), r.nextInt(500));
         list = new ArrayList<Rock>();
         img = ImageLoader.loadImage("/textures/Background.png");
+        score = 0;
     }
-    private ActionListener gameListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.exit(10);
-        }
-    };
+
+    public int getScore() {
+        return score;
+    }
 
     private ActionListener speedListener = new ActionListener() {
         @Override
@@ -102,6 +96,7 @@ public class GameState extends States{
             food = new Food(r.nextInt(700), r.nextInt(510));
             countFood++;
             score++;
+            player.setScore(score);
             if (countFood % 5 == 0){
                 rock = new Rock(r.nextInt(700), r.nextInt(500), 34, 34);
                 rockTimer.start();
@@ -125,23 +120,17 @@ public class GameState extends States{
         player.render(g);
         food.render(g);
 
-
         if (player.isAlive()) {
             g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
             g.drawString("Score:    " + score, 10, 20);
-            g.drawString(String.format("%s: %d", "Strenght", player.getVelocity()), 10, 40);
-
+            g.drawString(String.format("%s: %d", "Strength", player.getVelocity()), 10, 40);
         } else{
-            g.setFont(new Font("TimesRoman", Font.BOLD, 80));
-            g.drawString("Game Over",175,250);
-            g.setFont(new Font("TimesRoman", Font.BOLD, 20));
-            g.setColor(Color.RED);
-            g.drawString("Your Score is:    " + score,335,300);
+            timer.stop();
+            foodTimer.stop();
+            rockTimer.stop();
             player.setVelocity(0);
-            gameTimer.start();
-
+            StateManager.setState(new GameOverState(game));
         }
-
 
         if (rock != null) {
             rock.render(g);

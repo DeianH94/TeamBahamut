@@ -17,6 +17,7 @@ public class Player extends Entity {
     private Rectangle boundingBox;
     private int col = 0;
     private int row = 0;
+    private int score;
 
     public static boolean goingUp;
     public static boolean goingDown;
@@ -30,6 +31,7 @@ public class Player extends Entity {
         this.velocity = 5;
         this.img = Assets.player;
         this.boundingBox = new Rectangle(this.width, this.height);
+        this.score = 0;
     }
 
     public int getVelocity() {
@@ -38,6 +40,14 @@ public class Player extends Entity {
 
     public void setVelocity(int velocity) {
         this.velocity = velocity;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public Rectangle getBoundingBox() {

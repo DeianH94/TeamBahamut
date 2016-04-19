@@ -1,7 +1,6 @@
 package game;
 
 import display.Display;
-import entities.creatures.Player;
 import gfx.Assets;
 import states.*;
 
@@ -24,6 +23,7 @@ public class Game implements Runnable {
     public States gameState;
     private States menuState;
     private States settingsState;
+    private States gameOverState;
 
     private Display display;
 
@@ -57,6 +57,7 @@ public class Game implements Runnable {
         gameState = new GameState(this);
         menuState = new MenuState(this);
         settingsState = new SettingsState(this);
+        gameOverState = new GameOverState(this);
         StateManager.setState(menuState);
     }
 
