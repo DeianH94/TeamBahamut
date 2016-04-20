@@ -18,8 +18,9 @@ public class Ranking {
                     int replace = Integer.parseInt(rank.get(2).split(" ")[0]);
                     String replaceName = rank.get(2).split(" ")[1];
                     rank.remove(3);
-                    rank.put(2, newScore + " " + userName);
-                    rank.put(3, replace + " " + replaceName);
+                    rank.put(1, rank.get(1).split(" ")[0] + " " + rank.get(1).split(" ")[1] + "\n");
+                    rank.put(2, newScore + " " + userName + "\n");
+                    rank.put(3, replace + " " + replaceName + "\n");
                 } else {
                     int replaceFirst = Integer.parseInt(rank.get(1).split(" ")[0]);
                     String replaceFirstName = rank.get(1).split(" ")[1];
