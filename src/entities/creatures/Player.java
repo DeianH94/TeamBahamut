@@ -104,7 +104,7 @@ public class Player extends Entity {
                 this.x,
                 this.y,
                 null);
-        //g.drawRect(this.x, this.y, this.width, this.height);
+        // g.drawRect(this.x, this.y, this.width, this.height);
     }
 
     public void speedDown(){

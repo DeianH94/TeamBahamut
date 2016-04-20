@@ -2,10 +2,9 @@ package states;
 
 import entities.creatures.Player;
 import entities.items.Food;
-import entities.items.Rock;
+import entities.items.Skull;
 import game.Game;
 import gfx.Assets;
-import gfx.ImageLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +17,7 @@ import java.util.Random;
 public class GameState extends States{
     public static Player player;
     private static Food food;
-    private static Rock rock;
+    private static Skull skull;
 
     private Random r;
     private int speedTime;
@@ -51,7 +50,7 @@ public class GameState extends States{
         // Entities
         player = new Player(200, 300);
         food = new Food(r.nextInt(700), r.nextInt(500));
-        list = new ArrayList<Rock>();
+        list = new ArrayList<Skull>();
         img = Assets.background;
         score = 0;
     }
@@ -78,8 +77,8 @@ public class GameState extends States{
     private ActionListener rockListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            list.add(rock);
-            list.remove(rock);
+            list.add(skull);
+            list.remove(skull);
         }
     };
 
@@ -99,15 +98,15 @@ public class GameState extends States{
             score++;
             player.setScore(score);
             if (countFood % 5 == 0){
-                rock = new Rock(r.nextInt(700), r.nextInt(500), 34, 34);
+                skull = new Skull(r.nextInt(700), r.nextInt(500));
                 rockTimer.start();
-                rock.tick();
+                skull.tick();
             }
         }
 
-        if (rock != null && player.intersects(rock.boundingBox)) {
+        if (skull != null && player.intersects(skull.boundingBox)) {
             player.speedUpMore();
-            rock = null;
+            skull = null;
         }
 
         player.tick();
@@ -134,8 +133,8 @@ public class GameState extends States{
             StateManager.setState(new GameOverState(game));
         }
 
-        if (rock != null) {
-            rock.render(g);
+        if (skull != null) {
+            skull.render(g);
         }
     }
 }

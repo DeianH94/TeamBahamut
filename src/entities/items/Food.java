@@ -39,6 +39,6 @@ public class Food extends Entity {
                 this.x,
                 this.y,
                 null);
-        //g.drawRect(this.x, this.y, this.width, this.height);
+        // g.drawRect(this.x, this.y, this.width, this.height);
     }
 }
