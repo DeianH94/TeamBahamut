@@ -6,6 +6,8 @@ import gfx.SpriteSheet;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.TreeMap;
 
 public class MenuState extends States{
     private BufferedImage img;
@@ -14,6 +16,7 @@ public class MenuState extends States{
     private static final int buttonHeight = 80;
     private int startRow = 0;
     private int exitRow = 0;
+    private int highscoresRow = 0;
 
     public MenuState(Game game) {
         super(game);
@@ -31,7 +34,6 @@ public class MenuState extends States{
             if (game.getMouseHandler().isLeftPressed())
             {
                 StateManager.setState(game.gameState);
-
             }
         } else {
             startRow = 0;
@@ -49,6 +51,19 @@ public class MenuState extends States{
         } else {
             exitRow = 0;
         }
+
+        if (game.getMouseHandler().getMouseX() >= 260
+                && game.getMouseHandler().getMouseX() < 260 + buttonWidth
+                && game.getMouseHandler().getMouseY() > 460
+                && game.getMouseHandler().getMouseY() < 460 + buttonHeight) {
+            highscoresRow = 1;
+            if (game.getMouseHandler().isLeftPressed())
+            {
+                StateManager.setState(game.highscoreState);
+            }
+        } else {
+            highscoresRow = 0;
+        }
     }
 
     @Override
@@ -61,6 +76,7 @@ public class MenuState extends States{
         g.drawString("Start new game", 315, 305);
         g.drawImage(this.button.crop(0, buttonHeight * exitRow, buttonWidth, buttonHeight), 260, 360, null);
         g.drawString("Exit", 375, 405);
-
+        g.drawImage(this.button.crop(0, buttonHeight * highscoresRow, buttonWidth, buttonHeight), 260, 460, null);
+        g.drawString("Highscores", 340, 505);
     }
 }

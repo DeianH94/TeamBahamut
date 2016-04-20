@@ -21,9 +21,10 @@ public class Game implements Runnable {
 
     //States
     public States gameState;
-    private States menuState;
+    public States menuState;
     private States settingsState;
     private States gameOverState;
+    public States highscoreState;
 
     private Display display;
 
@@ -58,6 +59,7 @@ public class Game implements Runnable {
         menuState = new MenuState(this);
         settingsState = new SettingsState(this);
         gameOverState = new GameOverState(this);
+        highscoreState = new HighscoresState(this);
         StateManager.setState(menuState);
     }
 
