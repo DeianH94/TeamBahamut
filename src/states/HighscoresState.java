@@ -1,5 +1,6 @@
 package states;
 
+import HighscoreManager.LoadRanking;
 import game.Game;
 import gfx.Assets;
 import gfx.SpriteSheet;

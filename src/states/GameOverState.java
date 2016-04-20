@@ -1,10 +1,15 @@
 package states;
 
+import HighscoreManager.LoadRanking;
+import HighscoreManager.Ranking;
 import game.Game;
 import gfx.Assets;
 import gfx.SpriteSheet;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class GameOverState extends States{
     private static final int BUTTON_WIDTH = 254;
@@ -14,16 +19,22 @@ public class GameOverState extends States{
     private SpriteSheet button;
     private int startRow = 0;
     private int exitRow = 0;
+    private String name;
 
     public GameOverState(Game game) {
         super(game);
         img = Assets.background;
         button = Assets.button;
+        saveName();
+    }
 
-        // String name = JOptionPane.showInputDialog(game.display.frame,
-        //         "New Highscore",
-        //         "Input your name:",
-        //         JOptionPane.INFORMATION_MESSAGE);
+    public void saveName() {
+        if (!GameState.player.isAlive()) {
+            name = JOptionPane.showInputDialog(game.display.frame,
+                    "Input your name:",
+                    "New Highscore",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     @Override
@@ -52,6 +63,11 @@ public class GameOverState extends States{
             }
         } else {
             exitRow = 0;
+        }
+        try {
+            Ranking.ranking(LoadRanking.loadRanking(), GameState.player.getScore(), name);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

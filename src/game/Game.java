@@ -25,8 +25,7 @@ public class Game implements Runnable {
     private States settingsState;
     private States gameOverState;
     public States highscoreState;
-
-    private Display display;
+    public Display display;
 
     public Game(String name, int width, int height) {
         this.width = width;

@@ -1,4 +1,4 @@
-package states;
+package HighscoreManager;
 
 import java.io.*;
 import java.util.TreeMap;

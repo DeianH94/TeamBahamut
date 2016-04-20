@@ -6,8 +6,6 @@ import gfx.SpriteSheet;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.TreeMap;
 
 public class MenuState extends States{
     private BufferedImage img;

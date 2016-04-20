@@ -1,23 +1,14 @@
-package states;
+package HighscoreManager;
 
 import java.io.*;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * Created by Anton on 20-Apr-16.
- */
 public class Ranking {
-
-    private int score;
-    private String name;
-    private String line;
-
-    public Ranking(TreeMap<Integer,String> rank,int newScore, String userName) throws IOException {
+    public static void ranking(TreeMap<Integer,String> rank, int newScore, String userName) throws IOException {
 
         int first = Integer.parseInt(rank.get(1).split(" ")[0]);
         int last = Integer.parseInt(rank.get(3).split(" ")[0]);
-
 
                 if (newScore <= last) {
                     return;
@@ -35,15 +26,13 @@ public class Ranking {
                     int replaceSec = Integer.parseInt(rank.get(2).split(" ")[0]);
                     String replaceSecondName = rank.get(2).split(" ")[1];
                     rank.remove(3);
-                    rank.put(1, newScore + " " + userName);
-                    rank.put(2,replaceFirst + " " + replaceFirstName);
-                    rank.put(3, replaceSec + " " + replaceSecondName);
+                    rank.put(1, newScore + " " + userName + "\n");
+                    rank.put(2,replaceFirst + " " + replaceFirstName + "\n");
+                    rank.put(3, replaceSec + " " + replaceSecondName + "\n");
                 }
 
-
-
             BufferedWriter writer = new BufferedWriter(new FileWriter(
-                    "resources/ranking.txt"));
+                    "resources/ranking.txt.txt"));
 
             for (Map.Entry<Integer, String> data : rank.entrySet()) {
                 writer.write(data.getKey() + " " + data.getValue());

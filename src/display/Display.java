@@ -8,7 +8,7 @@ public class Display {
     private int width;
     private int height;
 
-    private JFrame frame;
+    public JFrame frame;
     private Canvas canvas;
 
     // public JTextField playerName;
