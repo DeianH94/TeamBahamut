@@ -4,7 +4,6 @@ import game.Game;
 import gfx.Assets;
 import gfx.ImageLoader;
 import gfx.SpriteSheet;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -20,6 +19,11 @@ public class GameOverState extends States{
         super(game);
         img = ImageLoader.loadImage("/textures/Background.png");
         button = Assets.button;
+
+        // String name = JOptionPane.showInputDialog(game.display.frame,
+        //         "New Highscore",
+        //         "Input your name:",
+        //         JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
@@ -30,6 +34,7 @@ public class GameOverState extends States{
                 && game.getMouseHandler().getMouseY() < 360 + buttonHeight) {
             startRow = 1;
             if (game.getMouseHandler().isLeftPressed()) {
+                //game.display.hideTextField();
                 game.gameState = new GameState(game);
                 StateManager.setState(game.gameState);
             }

@@ -9,6 +9,9 @@ import java.awt.*;
 import static states.GameState.player;
 
 public class Player extends Entity {
+    private final int DEFAULT_PLAYER_WIDTH = 48;
+    private final int DEFAULT_PLAYER_HEIGHT = 48;
+    private final int INITIAL_VELOCITY = 5;
 
     private int velocity;
     private int width, height;
@@ -26,9 +29,9 @@ public class Player extends Entity {
 
     public Player(int x, int y) {
         super(x, y);
-        this.width = 48;
-        this.height = 48;
-        this.velocity = 5;
+        this.width = DEFAULT_PLAYER_WIDTH;
+        this.height = DEFAULT_PLAYER_HEIGHT;
+        this.velocity = INITIAL_VELOCITY;
         this.img = Assets.player;
         this.boundingBox = new Rectangle(this.width, this.height);
         this.score = 0;

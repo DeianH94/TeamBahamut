@@ -11,6 +11,8 @@ public class Display {
     private JFrame frame;
     private Canvas canvas;
 
+    // public JTextField playerName;
+
     public Display (String name , int width , int height ) {
         this.name = name;
         this.width = width;
@@ -35,10 +37,19 @@ public class Display {
         this.canvas.setMinimumSize(new Dimension(width, height));
         this.canvas.setMaximumSize(new Dimension(width, height));
         this.canvas.setFocusable(true);
-
+        // playerName = new JTextField(30);
+        // playerName.setBounds(200, 200, 100, 10);
+        // playerName.setEditable(true);
+        // playerName.setVisible(false);
+        // frame.add(playerName);
         this.frame.add(this.canvas);
         this.frame.pack();
+
     }
+
+    // public void hideTextField(){
+    //     playerName.setVisible(false);
+    // }
 
     public Canvas getCanvas() {
         return canvas;

@@ -12,7 +12,6 @@ public class Rock extends Entity {
     public Rectangle boundingBox;
     private BufferedImage image;
 
-
     public Rock(int x, int y, int width, int height) {
         super(x, y);
         this.width = width;

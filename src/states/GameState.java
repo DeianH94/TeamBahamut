@@ -4,6 +4,7 @@ import entities.creatures.Player;
 import entities.items.Food;
 import entities.items.Rock;
 import game.Game;
+import gfx.Assets;
 import gfx.ImageLoader;
 
 import javax.swing.*;
@@ -51,7 +52,7 @@ public class GameState extends States{
         player = new Player(200, 300);
         food = new Food(r.nextInt(700), r.nextInt(500));
         list = new ArrayList<Rock>();
-        img = ImageLoader.loadImage("/textures/Background.png");
+        img = Assets.background;
         score = 0;
     }
 
@@ -129,6 +130,7 @@ public class GameState extends States{
             foodTimer.stop();
             rockTimer.stop();
             player.setVelocity(0);
+            // Ranking.ranking("test", player.getScore());
             StateManager.setState(new GameOverState(game));
         }
 

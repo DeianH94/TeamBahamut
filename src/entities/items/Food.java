@@ -8,6 +8,9 @@ import java.awt.*;
 import java.util.Random;
 
 public class Food extends Entity {
+    private final int DEFAULT_FOOD_WIDTH = 29;
+    private final int DEFAULT_FOOD_HEIGHT = 28;
+
     private int width, height;
     public Rectangle boundingBox;
     private SpriteSheet img;
@@ -21,8 +24,8 @@ public class Food extends Entity {
         r = new Random();
         rWidth = r.nextInt(4);
         rHeight = r.nextInt(4);
-        this.width = 29;
-        this.height = 28;
+        this.width = DEFAULT_FOOD_WIDTH;
+        this.height = DEFAULT_FOOD_HEIGHT;
         this.boundingBox = new Rectangle(x, y, width, height);
         this.img = Assets.fruit;
     }
