@@ -1,6 +1,7 @@
 package game;
 
 import display.Display;
+import entities.creatures.Player;
 import states.GameState;
 
 import java.awt.event.KeyEvent;
@@ -17,29 +18,33 @@ public class InputHandler implements KeyListener {
         int keyCode = e.getKeyCode();
 
         if (keyCode == KeyEvent.VK_UP) {
-            GameState.player.goingUp = true;
-            GameState.player.goingDown = false;
-            GameState.player.goingLeft = false;
-            GameState.player.goingRight = false;
+            Player.setGoingUp(true);
+            Player.setGoingDown(false);
+            Player.setGoingLeft(false);
+            Player.setGoingRight(false);
         }
+
         if (keyCode == KeyEvent.VK_DOWN) {
-            GameState.player.goingDown = true;
-            GameState.player.goingUp = false;
-            GameState.player.goingLeft = false;
-            GameState.player.goingRight = false;
+            Player.setGoingUp(false);
+            Player.setGoingDown(true);
+            Player.setGoingLeft(false);
+            Player.setGoingRight(false);
         }
+
         if (keyCode == KeyEvent.VK_LEFT) {
-            GameState.player.goingLeft = true;
-            GameState.player.goingUp = false;
-            GameState.player.goingDown = false;
-            GameState.player.goingRight = false;
+            Player.setGoingUp(false);
+            Player.setGoingDown(false);
+            Player.setGoingLeft(true);
+            Player.setGoingRight(false);
         }
+
         if (keyCode == KeyEvent.VK_RIGHT) {
-            GameState.player.goingRight = true;
-            GameState.player.goingUp = false;
-            GameState.player.goingDown = false;
-            GameState.player.goingLeft = false;
+            Player.setGoingUp(false);
+            Player.setGoingDown(false);
+            Player.setGoingLeft(false);
+            Player.setGoingRight(true);
         }
+
         if (keyCode == KeyEvent.VK_ESCAPE) {
             System.exit(0);
         }

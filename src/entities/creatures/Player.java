@@ -22,10 +22,10 @@ public class Player extends Entity {
     private int row = 0;
     private int score;
 
-    public static boolean goingUp;
-    public static boolean goingDown;
-    public static boolean goingLeft;
-    public static boolean goingRight;
+    private static boolean goingUp;
+    private static boolean goingDown;
+    private static boolean goingLeft;
+    private static boolean goingRight;
 
     public Player(int x, int y) {
         super(x, y);
@@ -66,6 +66,22 @@ public class Player extends Entity {
         }
 
         return false;
+    }
+
+    public static void setGoingUp(boolean goingUp) {
+        Player.goingUp = goingUp;
+    }
+
+    public static void setGoingDown(boolean goingDown) {
+        Player.goingDown = goingDown;
+    }
+
+    public static void setGoingLeft(boolean goingLeft) {
+        Player.goingLeft = goingLeft;
+    }
+
+    public static void setGoingRight(boolean goingRight) {
+        Player.goingRight = goingRight;
     }
 
     //Update the movement of the player
