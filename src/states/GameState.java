@@ -24,7 +24,7 @@ public class GameState extends States{
     private int foodTime;
     private int rockTime;
     private int countFood;
-    public int score;
+    private int score;
 
     private Timer timer;
     private Timer foodTimer;
@@ -55,16 +55,7 @@ public class GameState extends States{
         score = 0;
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    private ActionListener speedListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            GameState.player.speedUp();
-        }
-    };
+    private ActionListener speedListener = e -> GameState.player.speedUp();
 
     private ActionListener foodListener = new ActionListener() {
         @Override
@@ -91,7 +82,7 @@ public class GameState extends States{
             rockTimer.start();
         }
 
-        if (player.intersects(food.boundingBox)){
+        if (player.getBoundingBox().intersects(food.getBoundingBox())){
             player.speedDown();
             food = new Food(r.nextInt(700), r.nextInt(510));
             countFood++;
@@ -104,7 +95,7 @@ public class GameState extends States{
             }
         }
 
-        if (skull != null && player.intersects(skull.boundingBox)) {
+        if (skull != null && player.getBoundingBox().intersects(skull.getBoundingBox())) {
             player.speedUpMore();
             skull = null;
         }

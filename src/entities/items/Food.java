@@ -30,6 +30,10 @@ public class Food extends Entity {
         this.img = Assets.fruit;
     }
 
+    public Rectangle getBoundingBox() {
+        return boundingBox;
+    }
+
     public void tick(){
 
     }

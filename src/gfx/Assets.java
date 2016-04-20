@@ -10,9 +10,6 @@ public class Assets {
     public static SpriteSheet button;
     public static BufferedImage skull;
 
-
-    private static final int skullWidth = 17, skullHeight = 17;
-
     public static void init(){
         background = ImageLoader.loadImage("/textures/Background.png");
         player = new SpriteSheet(ImageLoader.loadImage("/textures/Dog.png"));

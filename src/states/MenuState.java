@@ -2,7 +2,6 @@ package states;
 
 import game.Game;
 import gfx.Assets;
-import gfx.ImageLoader;
 import gfx.SpriteSheet;
 
 import java.awt.*;
@@ -18,7 +17,7 @@ public class MenuState extends States{
 
     public MenuState(Game game) {
         super(game);
-        img = ImageLoader.loadImage("/textures/Background.png");
+        img = Assets.background;
         button = Assets.button;
     }
 

@@ -22,6 +22,10 @@ public class Skull extends Entity {
         this.image = Assets.skull;
     }
 
+    public Rectangle getBoundingBox() {
+        return boundingBox;
+    }
+
     public void tick(){
 
     }
