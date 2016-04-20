@@ -14,22 +14,21 @@ public class Ranking {
                     return;
                 }
 
-                if (newScore > last && newScore < first) {
+                if (newScore >= last && newScore <= first) {
                     int replace = Integer.parseInt(rank.get(2).split(" ")[0]);
                     String replaceName = rank.get(2).split(" ")[1];
-                    rank.remove(3);
-                    rank.put(1, rank.get(1).split(" ")[0] + " " + rank.get(1).split(" ")[1] + "\n");
-                    rank.put(2, newScore + " " + userName + "\n");
-                    rank.put(3, replace + " " + replaceName + "\n");
+
+                    rank.replace(2, newScore + " " + userName);
+                    rank.replace(3, replace + " " + replaceName);
                 } else {
                     int replaceFirst = Integer.parseInt(rank.get(1).split(" ")[0]);
                     String replaceFirstName = rank.get(1).split(" ")[1];
                     int replaceSec = Integer.parseInt(rank.get(2).split(" ")[0]);
                     String replaceSecondName = rank.get(2).split(" ")[1];
-                    rank.remove(3);
-                    rank.put(1, newScore + " " + userName + "\n");
-                    rank.put(2,replaceFirst + " " + replaceFirstName + "\n");
-                    rank.put(3, replaceSec + " " + replaceSecondName + "\n");
+
+                    rank.replace(1, newScore + " " + userName);
+                    rank.replace(2,replaceFirst + " " + replaceFirstName);
+                    rank.replace(3, replaceSec + " " + replaceSecondName);
                 }
 
             BufferedWriter writer = new BufferedWriter(new FileWriter(
@@ -37,6 +36,7 @@ public class Ranking {
 
             for (Map.Entry<Integer, String> data : rank.entrySet()) {
                 writer.write(data.getKey() + " " + data.getValue());
+                writer.write(System.lineSeparator());
             }
             writer.flush();
 
