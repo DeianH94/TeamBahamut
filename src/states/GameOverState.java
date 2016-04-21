@@ -20,6 +20,7 @@ public class GameOverState extends States{
     private int startRow = 0;
     private int exitRow = 0;
     private String name;
+    private boolean isNewGame = true;
 
     public GameOverState(Game game) {
         super(game);
@@ -46,6 +47,7 @@ public class GameOverState extends States{
             startRow = 1;
             if (game.getMouseHandler().isLeftPressed()) {
                 //game.display.hideTextField();
+                isNewGame = true;
                 game.gameState = new GameState(game);
                 StateManager.setState(game.gameState);
             }
@@ -65,7 +67,12 @@ public class GameOverState extends States{
             exitRow = 0;
         }
         try {
-            Ranking.ranking(LoadRanking.loadRanking(), GameState.player.getScore(), name);
+
+            if (isNewGame){
+                Ranking.ranking(LoadRanking.loadRanking(), GameState.player.getScore(), name);
+                isNewGame = false;
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

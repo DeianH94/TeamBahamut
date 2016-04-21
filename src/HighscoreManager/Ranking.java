@@ -7,6 +7,7 @@ import java.util.TreeMap;
 public class Ranking {
     public static void ranking(TreeMap<Integer,String> rank, int newScore, String userName) throws IOException {
 
+
         int first = Integer.parseInt(rank.get(1).split(" ")[0]);
         int mid = Integer.parseInt(rank.get(2).split(" ")[0]);
         int last = Integer.parseInt(rank.get(3).split(" ")[0]);
@@ -15,9 +16,9 @@ public class Ranking {
                     return;
                 }
 
-                if (newScore >= last && newScore < mid) {
+                if (newScore > last && newScore <= mid) {
                     rank.replace(3, newScore + " " + userName);
-                }else if((newScore >= mid && newScore < first)){
+                }else if((newScore > mid && newScore <= first)){
                     int replace = Integer.parseInt(rank.get(2).split(" ")[0]);
                     String replaceName = rank.get(2).split(" ")[1];
                     rank.remove(2);
@@ -46,6 +47,7 @@ public class Ranking {
                 writer.write(System.lineSeparator());
             }
             writer.flush();
+            writer.close();
 
     }
 }

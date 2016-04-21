@@ -25,6 +25,7 @@ public class GameState extends States{
     private int rockTime;
     private int countFood;
     private int score;
+    private boolean isNewGame;
 
     private Timer timer;
     private Timer foodTimer;
@@ -53,6 +54,7 @@ public class GameState extends States{
         list = new ArrayList<Skull>();
         img = Assets.background;
         score = 0;
+        isNewGame = true;
     }
 
     private ActionListener speedListener = e -> GameState.player.speedUp();
